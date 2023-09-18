@@ -2,7 +2,7 @@ i love u
 <<<<<<< HEAD
 i doesnt love
 =======
-buhi-uhi
+buhi
 >>>>>>> 2c36305682fc60b9723d651dce8a93438d12641b
 
 
