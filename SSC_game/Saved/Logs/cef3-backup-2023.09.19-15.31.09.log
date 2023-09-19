@@ -1,0 +1,341 @@
+[0919/205352.172:ERROR:gpu_init.cc(426)] Passthrough is not supported, GL is disabled
+[0919/210108.820:WARNING:angle_platform_impl.cc(48)] HLSLCompiler.cpp:257 (compileToBinary): 
+error X8000: D3D11 Internal Compiler Error: Invalid Bytecode: Failed to parse shader using reference shader parser: 0x8007000e
+
+[0919/210108.823:WARNING:angle_platform_impl.cc(48)] HLSLCompiler.cpp:257 (compileToBinary): 
+error X8000: D3D11 Internal Compiler Error: Invalid Bytecode: Failed to parse shader using reference shader parser: 0x8007000e
+
+[0919/210108.825:WARNING:angle_platform_impl.cc(48)] HLSLCompiler.cpp:257 (compileToBinary): 
+error X8000: D3D11 Internal Compiler Error: Invalid Bytecode: Failed to parse shader using reference shader parser: 0x8007000e
+
+[0919/210108.825:ERROR:shared_context_state.cc(73)] Skia shader compilation error
+------------------------
+// Vertex SKSL
+uniform float4 sk_RTAdjust;in float2 position;in float2 localCoord;in float4 texSubset;out float2 vlocalCoord_Stage0;out float4 vtexSubset_Stage0;void main() {// Primitive Processor QuadPerEdgeAAGeometryProcessor
+vlocalCoord_Stage0 = localCoord;vtexSubset_Stage0 = texSubset;sk_Position = float4(position.x , position.y, 0, 1);}
+// Fragment SKSL
+uniform sampler2D uTextureSampler_0_Stage0;
+in float2 vlocalCoord_Stage0;in float4 vtexSubset_Stage0;void main() {half4 outputColor_Stage0;half4 outputCoverage_Stage0;{ // Stage 0, QuadPerEdgeAAGeometryProcessor
+outputColor_Stage0 = half4(1);float2 texCoord;texCoord = vlocalCoord_Stage0;float4 subset;subset = vtexSubset_Stage0;texCoord = clamp(texCoord, subset.xy, subset.zw);outputColor_Stage0 = (sample(uTextureSampler_0_Stage0, texCoord) * outputColor_Stage0);outputCoverage_Stage0 = half4(1);}{ // Xfer Processor: Porter Duff
+sk_FragColor = outputColor_Stage0 * outputCoverage_Stage0;}}
+// Vertex GLSL
+#version 100
+
+precision mediump float;
+precision mediump sampler2D;
+uniform highp vec4 sk_RTAdjust;
+attribute highp vec2 position;
+attribute highp vec2 localCoord;
+attribute highp vec4 texSubset;
+varying highp vec2 vlocalCoord_Stage0;
+varying highp vec4 vtexSubset_Stage0;
+void main() {
+    vlocalCoord_Stage0 = localCoord;
+    vtexSubset_Stage0 = texSubset;
+    gl_Position = vec4(position.x, position.y, 0.0, 1.0);
+    gl_Position = vec4(gl_Position.xy * sk_RTAdjust.xz + gl_Position.ww * sk_RTAdjust.yw, 0.0, gl_Position.w);
+}
+
+// Fragment GLSL
+#version 100
+
+precision mediump float;
+precision mediump sampler2D;
+uniform sampler2D uTextureSampler_0_Stage0;
+varying highp vec2 vlocalCoord_Stage0;
+varying highp vec4 vtexSubset_Stage0;
+void main() {
+    mediump vec4 outputColor_Stage0;
+    {
+        outputColor_Stage0 = vec4(1.0);
+        highp vec2 texCoord;
+        texCoord = vlocalCoord_Stage0;
+        highp vec4 subset;
+        subset = vtexSubset_Stage0;
+        texCoord = clamp(texCoord, subset.xy, subset.zw);
+        outputColor_Stage0 = texture2D(uTextureSampler_0_Stage0, texCoord);
+    }
+    {
+        gl_FragColor = outputColor_Stage0;
+    }
+}
+
+
+Errors:
+error X8000: D3D11 Internal Compiler Error: Invalid Bytecode: Failed to parse shader using reference shader parser: 0x8007000e
+
+Warning: D3D shader compilation failed with default flags. (ps_5_0)
+ Retrying with skip validation
+error X8000: D3D11 Internal Compiler Error: Invalid Bytecode: Failed to parse shader using reference shader parser: 0x8007000e
+
+Warning: D3D shader compilation failed with skip validation flags. (ps_5_0)
+ Retrying with skip optimization
+error X8000: D3D11 Internal Compiler Error: Invalid Bytecode: Failed to parse shader using reference shader parser: 0x8007000e
+
+Warning: D3D shader compilation failed with skip optimization flags. (ps_5_0)
+
+Failed to create D3D Shaders
+
+[0919/210108.829:WARNING:angle_platform_impl.cc(48)] HLSLCompiler.cpp:257 (compileToBinary): 
+error X8000: D3D11 Internal Compiler Error: Invalid Bytecode: Failed to parse shader using reference shader parser: 0x8007000e
+
+[0919/210108.832:WARNING:angle_platform_impl.cc(48)] HLSLCompiler.cpp:257 (compileToBinary): 
+error X8000: D3D11 Internal Compiler Error: Invalid Bytecode: Failed to parse shader using reference shader parser: 0x8007000e
+
+[0919/210108.835:WARNING:angle_platform_impl.cc(48)] HLSLCompiler.cpp:257 (compileToBinary): 
+error X8000: D3D11 Internal Compiler Error: Invalid Bytecode: Failed to parse shader using reference shader parser: 0x8007000e
+
+[0919/210108.835:ERROR:shared_context_state.cc(73)] Skia shader compilation error
+------------------------
+// Vertex SKSL
+uniform float4 sk_RTAdjust;in float2 position;in float2 localCoord;in float4 texSubset;out float2 vlocalCoord_Stage0;out float4 vtexSubset_Stage0;void main() {// Primitive Processor QuadPerEdgeAAGeometryProcessor
+vlocalCoord_Stage0 = localCoord;vtexSubset_Stage0 = texSubset;sk_Position = float4(position.x , position.y, 0, 1);}
+// Fragment SKSL
+uniform sampler2D uTextureSampler_0_Stage0;
+in float2 vlocalCoord_Stage0;in float4 vtexSubset_Stage0;void main() {half4 outputColor_Stage0;half4 outputCoverage_Stage0;{ // Stage 0, QuadPerEdgeAAGeometryProcessor
+outputColor_Stage0 = half4(1);float2 texCoord;texCoord = vlocalCoord_Stage0;float4 subset;subset = vtexSubset_Stage0;texCoord = clamp(texCoord, subset.xy, subset.zw);outputColor_Stage0 = (sample(uTextureSampler_0_Stage0, texCoord) * outputColor_Stage0);outputCoverage_Stage0 = half4(1);}{ // Xfer Processor: Porter Duff
+sk_FragColor = outputColor_Stage0 * outputCoverage_Stage0;}}
+// Vertex GLSL
+#version 100
+
+precision mediump float;
+precision mediump sampler2D;
+uniform highp vec4 sk_RTAdjust;
+attribute highp vec2 position;
+attribute highp vec2 localCoord;
+attribute highp vec4 texSubset;
+varying highp vec2 vlocalCoord_Stage0;
+varying highp vec4 vtexSubset_Stage0;
+void main() {
+    vlocalCoord_Stage0 = localCoord;
+    vtexSubset_Stage0 = texSubset;
+    gl_Position = vec4(position.x, position.y, 0.0, 1.0);
+    gl_Position = vec4(gl_Position.xy * sk_RTAdjust.xz + gl_Position.ww * sk_RTAdjust.yw, 0.0, gl_Position.w);
+}
+
+// Fragment GLSL
+#version 100
+
+precision mediump float;
+precision mediump sampler2D;
+uniform sampler2D uTextureSampler_0_Stage0;
+varying highp vec2 vlocalCoord_Stage0;
+varying highp vec4 vtexSubset_Stage0;
+void main() {
+    mediump vec4 outputColor_Stage0;
+    {
+        outputColor_Stage0 = vec4(1.0);
+        highp vec2 texCoord;
+        texCoord = vlocalCoord_Stage0;
+        highp vec4 subset;
+        subset = vtexSubset_Stage0;
+        texCoord = clamp(texCoord, subset.xy, subset.zw);
+        outputColor_Stage0 = texture2D(uTextureSampler_0_Stage0, texCoord);
+    }
+    {
+        gl_FragColor = outputColor_Stage0;
+    }
+}
+
+
+Errors:
+error X8000: D3D11 Internal Compiler Error: Invalid Bytecode: Failed to parse shader using reference shader parser: 0x8007000e
+
+Warning: D3D shader compilation failed with default flags. (ps_5_0)
+ Retrying with skip validation
+error X8000: D3D11 Internal Compiler Error: Invalid Bytecode: Failed to parse shader using reference shader parser: 0x8007000e
+
+Warning: D3D shader compilation failed with skip validation flags. (ps_5_0)
+ Retrying with skip optimization
+error X8000: D3D11 Internal Compiler Error: Invalid Bytecode: Failed to parse shader using reference shader parser: 0x8007000e
+
+Warning: D3D shader compilation failed with skip optimization flags. (ps_5_0)
+
+Failed to create D3D Shaders
+
+[0919/210108.839:WARNING:angle_platform_impl.cc(48)] HLSLCompiler.cpp:257 (compileToBinary): 
+error X8000: D3D11 Internal Compiler Error: Invalid Bytecode: Failed to parse shader using reference shader parser: 0x8007000e
+
+[0919/210108.842:WARNING:angle_platform_impl.cc(48)] HLSLCompiler.cpp:257 (compileToBinary): 
+error X8000: D3D11 Internal Compiler Error: Invalid Bytecode: Failed to parse shader using reference shader parser: 0x8007000e
+
+[0919/210108.858:WARNING:angle_platform_impl.cc(48)] HLSLCompiler.cpp:257 (compileToBinary): 
+out of memory during compilation
+
+[0919/210108.863:WARNING:angle_platform_impl.cc(48)] HLSLCompiler.cpp:257 (compileToBinary): 
+error X8000: D3D11 Internal Compiler Error: Invalid Bytecode: Failed to parse shader using reference shader parser: 0x8007000e
+
+[0919/210108.867:WARNING:angle_platform_impl.cc(48)] HLSLCompiler.cpp:257 (compileToBinary): 
+error X8000: D3D11 Internal Compiler Error: Invalid Bytecode: Failed to parse shader using reference shader parser: 0x8007000e
+
+[0919/210108.871:WARNING:angle_platform_impl.cc(48)] HLSLCompiler.cpp:257 (compileToBinary): 
+error X8000: D3D11 Internal Compiler Error: Invalid Bytecode: Failed to parse shader using reference shader parser: 0x8007000e
+
+[0919/210108.871:WARNING:angle_platform_impl.cc(48)] Debug.cpp:180 (insertMessage): GL error: HIGH: Internal D3D11 error: HRESULT: 0x8007000E: HLSL compiler had an unexpected failure
+[0919/210108.871:ERROR:shared_context_state.cc(73)] Skia shader compilation error
+------------------------
+// Vertex SKSL
+uniform float4 sk_RTAdjust;uniform float3x3 umatrix_Stage1_c0_c0_c0_c0;uniform float3x3 umatrix_Stage1_c0_c0_c0_c1;uniform float3x3 umatrix_Stage1_c0_c0_c0_c2;in float2 position;in half4 color;in float2 localCoord;out half4 vcolor_Stage0;out float2 vTransformedCoords_0_Stage0;out float2 vTransformedCoords_1_Stage0;out float2 vTransformedCoords_2_Stage0;void main() {// Primitive Processor QuadPerEdgeAAGeometryProcessor
+vcolor_Stage0 = color;sk_Position = float4(position.x , position.y, 0, 1);{
+vTransformedCoords_0_Stage0 = (((umatrix_Stage1_c0_c0_c0_c0)) * localCoord.xy1).xy;
+}
+{
+vTransformedCoords_1_Stage0 = (((umatrix_Stage1_c0_c0_c0_c1)) * localCoord.xy1).xy;
+}
+{
+vTransformedCoords_2_Stage0 = (((umatrix_Stage1_c0_c0_c0_c2)) * localCoord.xy1).xy;
+}
+}
+// Fragment SKSL
+uniform float3x3 umatrix_Stage1_c0_c0_c0_c0;uniform float4 uclamp_Stage1_c0_c0_c0_c0_c0;uniform float3x3 umatrix_Stage1_c0_c0_c0_c1;uniform float4 uclamp_Stage1_c0_c0_c0_c1_c0;uniform float3x3 umatrix_Stage1_c0_c0_c0_c2;uniform float4 uclamp_Stage1_c0_c0_c0_c2_c0;uniform half3x3 ucolorSpaceMatrix_Stage1_c0_c0_c0;uniform half3 ucolorSpaceTranslate_Stage1_c0_c0_c0;uniform sampler2D uTextureSampler_0_Stage1;
+uniform sampler2D uTextureSampler_1_Stage1;
+uniform sampler2D uTextureSampler_2_Stage1;
+in half4 vcolor_Stage0;in float2 vTransformedCoords_0_Stage0;in float2 vTransformedCoords_1_Stage0;in float2 vTransformedCoords_2_Stage0;half4 TextureEffect_Stage1_c0_c0_c0_c0_c0(half4 _input) {
+float2 inCoord = vTransformedCoords_0_Stage0;float2 subsetCoord;subsetCoord.x = inCoord.x;subsetCoord.y = inCoord.y;float2 clampedCoord;clampedCoord.x = clamp(subsetCoord.x, uclamp_Stage1_c0_c0_c0_c0_c0.x, uclamp_Stage1_c0_c0_c0_c0_c0.z);clampedCoord.y = subsetCoord.y;half4 textureColor = sample(uTextureSampler_0_Stage1, clampedCoord);return textureColor;}
+
+half4 MatrixEffect_Stage1_c0_c0_c0_c0(half4 _input) {
+return TextureEffect_Stage1_c0_c0_c0_c0_c0(_input);
+}
+
+half4 TextureEffect_Stage1_c0_c0_c0_c1_c0(half4 _input) {
+float2 inCoord = vTransformedCoords_1_Stage0;float2 subsetCoord;subsetCoord.x = inCoord.x;subsetCoord.y = inCoord.y;float2 clampedCoord;clampedCoord.x = clamp(subsetCoord.x, uclamp_Stage1_c0_c0_c0_c1_c0.x, uclamp_Stage1_c0_c0_c0_c1_c0.z);clampedCoord.y = subsetCoord.y;half4 textureColor = sample(uTextureSampler_1_Stage1, clampedCoord);return textureColor;}
+
+half4 MatrixEffect_Stage1_c0_c0_c0_c1(half4 _input) {
+return TextureEffect_Stage1_c0_c0_c0_c1_c0(_input);
+}
+
+half4 TextureEffect_Stage1_c0_c0_c0_c2_c0(half4 _input) {
+float2 inCoord = vTransformedCoords_2_Stage0;float2 subsetCoord;subsetCoord.x = inCoord.x;subsetCoord.y = inCoord.y;float2 clampedCoord;clampedCoord.x = clamp(subsetCoord.x, uclamp_Stage1_c0_c0_c0_c2_c0.x, uclamp_Stage1_c0_c0_c0_c2_c0.z);clampedCoord.y = subsetCoord.y;half4 textureColor = sample(uTextureSampler_2_Stage1, clampedCoord);return textureColor;}
+
+half4 MatrixEffect_Stage1_c0_c0_c0_c2(half4 _input) {
+return TextureEffect_Stage1_c0_c0_c0_c2_c0(_input);
+}
+
+half4 YUVtoRGBEffect_Stage1_c0_c0_c0(half4 _input) {
+half4 planes[3];planes[0] = MatrixEffect_Stage1_c0_c0_c0_c0(_input);planes[1] = MatrixEffect_Stage1_c0_c0_c0_c1(_input);planes[2] = MatrixEffect_Stage1_c0_c0_c0_c2(_input);half4 color = half4(planes[0].r, planes[1].r, planes[2].r, 1);color.rgb = saturate(color.rgb * ucolorSpaceMatrix_Stage1_c0_c0_c0 + ucolorSpaceTranslate_Stage1_c0_c0_c0);return color;}
+
+half4 Blend_Stage1_c0_c0(half4 _input) {
+// Blend mode: SrcIn (Compose-One behavior)
+return blend_src_in(YUVtoRGBEffect_Stage1_c0_c0_c0(half4(1)), _input);
+}
+
+inline half4 OverrideInputFragmentProcessor_Stage1_c0(half4 _input) {
+return Blend_Stage1_c0_c0(false ? half4(0) : half4(1.000000, 1.000000, 1.000000, 1.000000));
+}
+
+void main() {half4 outputColor_Stage0;half4 outputCoverage_Stage0;{ // Stage 0, QuadPerEdgeAAGeometryProcessor
+outputColor_Stage0 = vcolor_Stage0;outputCoverage_Stage0 = half4(1);}half4 output_Stage1;output_Stage1 = OverrideInputFragmentProcessor_Stage1_c0(outputColor_Stage0);{ // Xfer Processor: Porter Duff
+sk_FragColor = output_Stage1 * outputCoverage_Stage0;}}
+// Vertex GLSL
+#version 100
+
+precision mediump float;
+precision mediump sampler2D;
+uniform highp vec4 sk_RTAdjust;
+uniform highp mat3 umatrix_Stage1_c0_c0_c0_c0;
+uniform highp mat3 umatrix_Stage1_c0_c0_c0_c1;
+uniform highp mat3 umatrix_Stage1_c0_c0_c0_c2;
+attribute highp vec2 position;
+attribute mediump vec4 color;
+attribute highp vec2 localCoord;
+varying mediump vec4 vcolor_Stage0;
+varying highp vec2 vTransformedCoords_0_Stage0;
+varying highp vec2 vTransformedCoords_1_Stage0;
+varying highp vec2 vTransformedCoords_2_Stage0;
+void main() {
+    vcolor_Stage0 = color;
+    gl_Position = vec4(position.x, position.y, 0.0, 1.0);
+    {
+        vTransformedCoords_0_Stage0 = (umatrix_Stage1_c0_c0_c0_c0 * vec3(localCoord, 1.0)).xy;
+    }
+    {
+        vTransformedCoords_1_Stage0 = (umatrix_Stage1_c0_c0_c0_c1 * vec3(localCoord, 1.0)).xy;
+    }
+    {
+        vTransformedCoords_2_Stage0 = (umatrix_Stage1_c0_c0_c0_c2 * vec3(localCoord, 1.0)).xy;
+    }
+    gl_Position = vec4(gl_Position.xy * sk_RTAdjust.xz + gl_Position.ww * sk_RTAdjust.yw, 0.0, gl_Position.w);
+}
+
+// Fragment GLSL
+#version 100
+
+precision mediump float;
+precision mediump sampler2D;
+uniform highp mat3 umatrix_Stage1_c0_c0_c0_c0;
+uniform highp vec4 uclamp_Stage1_c0_c0_c0_c0_c0;
+uniform highp mat3 umatrix_Stage1_c0_c0_c0_c1;
+uniform highp vec4 uclamp_Stage1_c0_c0_c0_c1_c0;
+uniform highp mat3 umatrix_Stage1_c0_c0_c0_c2;
+uniform highp vec4 uclamp_Stage1_c0_c0_c0_c2_c0;
+uniform mediump mat3 ucolorSpaceMatrix_Stage1_c0_c0_c0;
+uniform mediump vec3 ucolorSpaceTranslate_Stage1_c0_c0_c0;
+uniform sampler2D uTextureSampler_0_Stage1;
+uniform sampler2D uTextureSampler_1_Stage1;
+uniform sampler2D uTextureSampler_2_Stage1;
+varying mediump vec4 vcolor_Stage0;
+varying highp vec2 vTransformedCoords_0_Stage0;
+varying highp vec2 vTransformedCoords_1_Stage0;
+varying highp vec2 vTransformedCoords_2_Stage0;
+void main() {
+    mediump vec4 output_Stage1;
+    mediump vec4 _79_planes[3];
+    highp vec2 _82_inCoord = vTransformedCoords_0_Stage0;
+    highp vec2 _83_subsetCoord;
+    _83_subsetCoord.x = _82_inCoord.x;
+    _83_subsetCoord.y = _82_inCoord.y;
+    highp vec2 _84_clampedCoord;
+    _84_clampedCoord.x = clamp(_83_subsetCoord.x, uclamp_Stage1_c0_c0_c0_c0_c0.x, uclamp_Stage1_c0_c0_c0_c0_c0.z);
+    _84_clampedCoord.y = _83_subsetCoord.y;
+    mediump vec4 _85_textureColor = texture2D(uTextureSampler_0_Stage1, _84_clampedCoord);
+
+    _79_planes[0] = _85_textureColor;
+
+    highp vec2 _88_inCoord = vTransformedCoords_1_Stage0;
+    highp vec2 _89_subsetCoord;
+    _89_subsetCoord.x = _88_inCoord.x;
+    _89_subsetCoord.y = _88_inCoord.y;
+    highp vec2 _90_clampedCoord;
+    _90_clampedCoord.x = clamp(_89_subsetCoord.x, uclamp_Stage1_c0_c0_c0_c1_c0.x, uclamp_Stage1_c0_c0_c0_c1_c0.z);
+    _90_clampedCoord.y = _89_subsetCoord.y;
+    mediump vec4 _91_textureColor = texture2D(uTextureSampler_1_Stage1, _90_clampedCoord);
+
+    _79_planes[1] = _91_textureColor;
+
+    highp vec2 _94_inCoord = vTransformedCoords_2_Stage0;
+    highp vec2 _95_subsetCoord;
+    _95_subsetCoord.x = _94_inCoord.x;
+    _95_subsetCoord.y = _94_inCoord.y;
+    highp vec2 _96_clampedCoord;
+    _96_clampedCoord.x = clamp(_95_subsetCoord.x, uclamp_Stage1_c0_c0_c0_c2_c0.x, uclamp_Stage1_c0_c0_c0_c2_c0.z);
+    _96_clampedCoord.y = _95_subsetCoord.y;
+    mediump vec4 _97_textureColor = texture2D(uTextureSampler_2_Stage1, _96_clampedCoord);
+
+    _79_planes[2] = _97_textureColor;
+
+    mediump vec4 _98_color = vec4(_79_planes[0].x, _79_planes[1].x, _79_planes[2].x, 1.0);
+    _98_color.xyz = clamp(_98_color.xyz * ucolorSpaceMatrix_Stage1_c0_c0_c0 + ucolorSpaceTranslate_Stage1_c0_c0_c0, 0.0, 1.0);
+
+
+    output_Stage1 = _98_color;
+
+
+    {
+        gl_FragColor = output_Stage1;
+    }
+}
+
+
+Errors:
+
+[0919/210108.872:ERROR:shared_context_state.cc(790)] SharedContextState context lost via Skia OOM.
+[0919/210108.872:ERROR:gpu_service_impl.cc(1187)] Exiting GPU process because some drivers can't recover from errors. GPU process will restart shortly.
+[0919/210108.899:WARNING:gpu_process_host.cc(1296)] The GPU process has crashed 1 time(s)
+[0919/210109.227:WARNING:gpu_process_host.cc(1016)] Reinitialized the GPU process after a crash. The reported initialization time was 291 ms
+[0919/210109.570:WARNING:angle_platform_impl.cc(48)] Debug.cpp:180 (insertMessage): GL error: HIGH: Internal D3D11 error: HRESULT: 0x8007000E: Error allocating Texture2D
+[0919/210109.571:ERROR:raster_decoder.cc(3316)] [.RenderWorker-000006750EA3F000]GL ERROR :GL_INVALID_VALUE : glCreateTransferCacheEntryINTERNAL: Failure to deserialize transfer cache entry.
+[0919/210109.571:ERROR:raster_decoder.cc(3349)] [.RenderWorker-000006750EA3F000]GL ERROR :GL_INVALID_VALUE : glUnlockTransferCacheEntryINTERNAL: Attempt to unlock an invalid ID
+[0919/210109.571:ERROR:shared_context_state.cc(790)] SharedContextState context lost via Skia OOM.
+[0919/210109.571:ERROR:gpu_service_impl.cc(1187)] Exiting GPU process because some drivers can't recover from errors. GPU process will restart shortly.
+[0919/210109.608:WARNING:gpu_process_host.cc(1296)] The GPU process has crashed 2 time(s)
+[0919/210109.957:WARNING:gpu_process_host.cc(1016)] Reinitialized the GPU process after a crash. The reported initialization time was 262 ms
