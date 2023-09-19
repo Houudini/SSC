@@ -1,0 +1,6 @@
+[0919/164426.814:ERROR:gpu_init.cc(426)] Passthrough is not supported, GL is disabled
+[0919/165151.445:WARNING:angle_platform_impl.cc(48)] Debug.cpp:180 (insertMessage): GL error: HIGH: Internal D3D11 error: HRESULT: 0x8007000E: Error allocating Texture2D
+[0919/165151.445:ERROR:shared_context_state.cc(806)] SharedContextState lost due to GL_OUT_OF_MEMORY
+[0919/165151.445:ERROR:gpu_service_impl.cc(1187)] Exiting GPU process because some drivers can't recover from errors. GPU process will restart shortly.
+[0919/165151.511:WARNING:gpu_process_host.cc(1296)] The GPU process has crashed 1 time(s)
+[0919/165151.834:WARNING:gpu_process_host.cc(1016)] Reinitialized the GPU process after a crash. The reported initialization time was 277 ms
