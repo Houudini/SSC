@@ -1,0 +1,15 @@
+[0921/161356.377:ERROR:gpu_init.cc(426)] Passthrough is not supported, GL is disabled
+[0921/162320.000:WARNING:angle_platform_impl.cc(48)] Debug.cpp:180 (insertMessage): GL error: HIGH: Internal D3D11 error: HRESULT: 0x8007000E: Error allocating Texture2D
+[0921/162320.001:ERROR:shared_context_state.cc(806)] SharedContextState lost due to GL_OUT_OF_MEMORY
+[0921/162320.001:ERROR:gpu_service_impl.cc(1187)] Exiting GPU process because some drivers can't recover from errors. GPU process will restart shortly.
+[0921/162320.028:WARNING:gpu_process_host.cc(1296)] The GPU process has crashed 1 time(s)
+[0921/162320.368:WARNING:gpu_process_host.cc(1016)] Reinitialized the GPU process after a crash. The reported initialization time was 302 ms
+[0921/162337.276:WARNING:angle_platform_impl.cc(48)] Debug.cpp:180 (insertMessage): GL error: HIGH: Internal error: 0x00000505: Failed to allocate host memory
+[0921/162337.321:WARNING:gpu_process_host.cc(1296)] The GPU process has crashed 2 time(s)
+[0921/162337.659:WARNING:gpu_process_host.cc(1016)] Reinitialized the GPU process after a crash. The reported initialization time was 304 ms
+[0921/162337.880:WARNING:angle_platform_impl.cc(48)] Debug.cpp:180 (insertMessage): GL error: HIGH: Internal D3D11 error: HRESULT: 0x8007000E: Error allocating Texture2D
+[0921/162337.880:ERROR:shared_context_state.cc(806)] SharedContextState lost due to GL_OUT_OF_MEMORY
+[0921/162337.880:ERROR:gpu_service_impl.cc(1187)] Exiting GPU process because some drivers can't recover from errors. GPU process will restart shortly.
+[0921/162337.903:WARNING:gpu_process_host.cc(1296)] The GPU process has crashed 3 time(s)
+[0921/162338.173:ERROR:viz_main_impl.cc(150)] Exiting GPU process due to errors during initialization
+[0921/162338.176:ERROR:browser_gpu_channel_host_factory.cc(154)] Failed to launch GPU process.
