@@ -1,0 +1,4 @@
+[0922/172839.430:ERROR:gpu_init.cc(426)] Passthrough is not supported, GL is disabled
+[0922/175542.610:WARNING:dns_config_service_win.cc(712)] Failed to read DnsConfig.
+[0922/175542.619:WARNING:dns_config_service_win.cc(712)] Failed to read DnsConfig.
+[0922/180936.003:WARNING:gpu_process_host.cc(1296)] The GPU process has crashed 1 time(s)
